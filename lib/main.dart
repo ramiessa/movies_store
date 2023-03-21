@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_store/shared/cubit/app_cubit.dart';
 import 'package:movies_store/shared/styles/styles.dart';
 
 import 'modules/Start_Screen/Start_Screen.dart';
@@ -15,11 +17,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: darkTheme,
-      home: const SafeArea(top: true, child: HomeScreen()),
-    );
+    return BlocProvider(
+        create: (BuildContext context) => AppCubit()..getCategories(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: darkTheme,
+          home: const SafeArea(top: true, child: HomeScreen()),
+        ));
   }
 }

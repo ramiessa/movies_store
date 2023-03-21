@@ -8,46 +8,43 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => AppCubit()..getCategories(),
-      child: BlocConsumer<AppCubit, AppStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var cubit = AppCubit.get(context);
-          return SafeArea(
-            top: true,
-            child: Scaffold(
-              body: cubit.bottomScreens[cubit.currentIndex],
-              bottomNavigationBar: BottomNavigationBar(
-                onTap: (index) {
-                  cubit.changeBottom(index);
-                },
-                currentIndex: cubit.currentIndex,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.home,
-                    ),
-                    label: '',
+    return BlocConsumer<AppCubit, AppStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var cubit = AppCubit.get(context);
+        return SafeArea(
+          top: true,
+          child: Scaffold(
+            body: cubit.bottomScreens[cubit.currentIndex],
+            bottomNavigationBar: BottomNavigationBar(
+              onTap: (index) {
+                cubit.changeBottom(index);
+              },
+              currentIndex: cubit.currentIndex,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
                   ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.computer,
-                    ),
-                    label: '',
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.computer,
                   ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.person,
-                    ),
-                    label: '',
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.person,
                   ),
-                ],
-              ),
+                  label: '',
+                ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -12,7 +12,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: "https://darsoft.b-cdn.net/movies_categories.json",
+        baseUrl: "https://darsoft.b-cdn.net",
         receiveDataWhenStatusError: false,
       ),
     );

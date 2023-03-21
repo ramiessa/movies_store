@@ -36,7 +36,7 @@ class AppCubit extends Cubit<AppStates> {
       url: "https://darsoft.b-cdn.net/movies_categories.json",
     ).then((value) {
       categoriesModel = CategoriesModel.fromJson(value.data);
-      print(categoriesModel);
+      print("Rami");
       emit(SuccessCategoriesState());
     }).catchError((error) {
       print(error.toString());
