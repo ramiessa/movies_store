@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/shop_app/categories_model.dart';
-import '../../modules/Categories/Categories.dart';
+import '../../modules/Categories/Categorie_screen.dart';
 import '../../modules/WhachList/WatchList.dart';
 import '../../modules/profile/profile.dart';
 import '../constant/constants.dart';
@@ -29,14 +29,14 @@ class AppCubit extends Cubit<AppStates> {
     emit(ChangeBottomNavState());
   }
 
-  CategoriesModel? categoriesModel;
+  CategoriesModel? categoriesdata;
 
-  void getCategories() {
-    DioHelper.getData(
-      url: "https://darsoft.b-cdn.net/movies_categories.json",
-    ).then((value) {
-      categoriesModel = CategoriesModel.fromJson(value.data);
-      print("Rami");
+  void get_categories() {
+    emit(LoadingCategoriesState());
+    fetchData().then((value) {
+      print("ramie");
+      categoriesdata = CategoriesModel.fromJson(value);
+      print(categoriesdata!.categories[2].title);
       emit(SuccessCategoriesState());
     }).catchError((error) {
       print(error.toString());

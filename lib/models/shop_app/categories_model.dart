@@ -1,18 +1,18 @@
 class CategoriesModel {
-  List<Categories> categories = [];
+  List<Movie> categories = [];
 
   CategoriesModel.fromJson(Map<String, dynamic> json) {
     json['categories'].forEach((element) {
-      categories.add(Categories.fromJson(element));
+      categories.add(Movie.fromJson(element));
     });
   }
 }
 
-class Categories {
+class Movie {
   int? id;
   String? title;
 
-  Categories.fromJson(Map<String, dynamic> json) {
+  Movie.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
   }

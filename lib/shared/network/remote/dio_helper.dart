@@ -1,31 +1,15 @@
 import 'dart:convert';
-
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../models/shop_app/categories_model.dart';
+Future<Map<String, dynamic>> fetchData() async {
+  final response = await http
+      .get(Uri.parse('https://darsoft.b-cdn.net/movies_categories.json'));
 
-class DioHelper {
-  static Dio? dio;
-
-  static init() {
-    dio = Dio(
-      BaseOptions(
-        baseUrl: "https://darsoft.b-cdn.net",
-        receiveDataWhenStatusError: false,
-      ),
-    );
-  }
-
-  static Future<Response> getData({
-    String? url,
-    Map<String, dynamic>? query,
-    String lang = 'en',
-    String? token,
-  }) async {
-    return await dio!.get(
-      "https://darsoft.b-cdn.net/movies_categories.json",
-    );
+  if (response.statusCode == 200) {
+    // If the call to the server was successful, parse the JSON.
+    return json.decode(response.body);
+  } else {
+    // If that call was not successful, throw an error.
+    throw Exception('Failed to load data');
   }
 }
