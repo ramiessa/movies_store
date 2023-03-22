@@ -33,7 +33,7 @@ class AppCubit extends Cubit<AppStates> {
 
   void get_categories() {
     emit(LoadingCategoriesState());
-    fetchData().then((value) {
+    fetchData(url: Categoriesurl).then((value) {
       print("ramie");
       categoriesdata = CategoriesModel.fromJson(value);
       print(categoriesdata!.categories[2].title);

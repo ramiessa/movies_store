@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<Map<String, dynamic>> fetchData() async {
-  final response = await http
-      .get(Uri.parse('https://darsoft.b-cdn.net/movies_categories.json'));
+Future<Map<String, dynamic>> fetchData({
+  required String? url,
+}) async {
+  final response = await http.get(Uri.parse(url!));
 
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON.
