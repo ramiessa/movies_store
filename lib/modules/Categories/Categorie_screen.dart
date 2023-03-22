@@ -16,7 +16,8 @@ class CategoriesScreen extends StatelessWidget {
           return Scaffold(
             body: ConditionalBuilder(
               condition: AppCubit.get(context).categoriesdata != null,
-              fallback: ((context) => const CircularProgressIndicator()),
+              fallback: ((context) =>
+                  const Center(child: CircularProgressIndicator())),
               builder: ((context) => const Center(child: Text('Categories'))),
             ),
           );
