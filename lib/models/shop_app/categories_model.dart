@@ -10,7 +10,7 @@ class CategoriesModel {
 
 class Movie {
   int? id;
-  String? title;
+  dynamic title;
 
   Movie.fromJson(Map<String, dynamic> json) {
     id = json['id'];

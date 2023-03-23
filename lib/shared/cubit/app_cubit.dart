@@ -29,7 +29,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(ChangeBottomNavState());
   }
 
-  CategoriesModel? categoriesdata;
+  dynamic categoriesdata;
 
   void get_categories() {
     emit(LoadingCategoriesState());
