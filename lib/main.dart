@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         create: (BuildContext context) => AppCubit()
           ..get_categories()
           ..get_Movies()
-          ..get_type_Movies(index: 1),
+          ..get_spicial(),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

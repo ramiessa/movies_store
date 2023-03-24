@@ -28,12 +28,12 @@ class CategoriesScreen extends StatelessWidget {
                 fallback: ((context) =>
                     const Center(child: CircularProgressIndicator())),
                 builder: ((context) =>
-                    Body(AppCubit.get(context).categoriesdata)),
+                    Body(AppCubit.get(context).categoriesdata, context)),
               ));
         });
   }
 
-  Widget Body(CategoriesModel model) {
+  Widget Body(CategoriesModel model, BuildContext context) {
     return Center(
         child: Padding(
       padding: const EdgeInsets.all(20.0),
@@ -89,9 +89,7 @@ class CategoriesScreen extends StatelessWidget {
                     (index) => Column(
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                print(index + 1);
-                              },
+                              onTap: () {},
                               child: Container(
                                 width: 150,
                                 height: 150,

@@ -1,6 +1,6 @@
 class MoviesModel {
   List<Movie> Movies = [];
-
+  MoviesModel() {}
   MoviesModel.fromJson(Map<String, dynamic> json) {
     json['movies'].forEach((element) {
       Movies.add(Movie.fromJson(element));
