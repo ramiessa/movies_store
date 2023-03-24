@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../models/shop_app/categories_model.dart';
+import '../../models/Movies_store/categories_model.dart';
+import '../../models/Movies_store/movie_model.dart';
 import '../../modules/Categories/Categorie_screen.dart';
 import '../../modules/WhachList/WatchList.dart';
 import '../../modules/profile/profile.dart';
@@ -41,6 +42,31 @@ class AppCubit extends Cubit<AppStates> {
     }).catchError((error) {
       print(error.toString());
       emit(ErrorCategoriesState());
+    });
+  }
+
+  dynamic movies_data;
+
+  void get_Movies() {
+    emit(LoadingMovieState());
+    fetchData(url: moviesurl).then((value) {
+      print("ramie");
+      movies_data = MoviesModel.fromJson(value);
+      print(movies_data.Movies[0].title);
+      emit(SuccessMovieState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(ErrorMovieState());
+    });
+  }
+
+  List<dynamic> type_movies_data = [];
+
+  void get_type_Movies({required int index}) {
+    emit(LoadingTypeOfMovieState());
+    movies_data.Movies.forEach((element) {
+      if (element.categoryId == index) type_movies_data.add(element);
+      emit(SuccessTypeOfMovieState());
     });
   }
 }

@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (BuildContext context) => AppCubit()..get_categories(),
+        create: (BuildContext context) => AppCubit()
+          ..get_categories()
+          ..get_Movies()
+          ..get_type_Movies(index: 1),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

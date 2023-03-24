@@ -6,8 +6,8 @@ import '../../models/Movies_store/categories_model.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_state.dart';
 
-class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+class ListMovisScreenOnIndex extends StatelessWidget {
+  const ListMovisScreenOnIndex({super.key, required int index});
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +24,16 @@ class CategoriesScreen extends StatelessWidget {
                 title: Center(child: const Text('Movies Store')),
               ),
               body: ConditionalBuilder(
-                condition: AppCubit.get(context).categoriesdata != null,
+                condition: AppCubit.get(context).type_movies_data.length != 0,
                 fallback: ((context) =>
                     const Center(child: CircularProgressIndicator())),
                 builder: ((context) =>
-                    Body(AppCubit.get(context).categoriesdata)),
+                    Body(AppCubit.get(context).type_movies_data, context)),
               ));
         });
   }
 
-  Widget Body(CategoriesModel model) {
+  Widget Body(List<dynamic> model, BuildContext context) {
     return Center(
         child: Padding(
       padding: const EdgeInsets.all(20.0),
@@ -70,7 +70,7 @@ class CategoriesScreen extends StatelessWidget {
               height: 30,
             ),
             const Text(
-              'Trending Categories',
+              'dfdf',
               style: TextStyle(
                 color: Colors.white,
                 fontStyle: FontStyle.italic,
@@ -80,32 +80,17 @@ class CategoriesScreen extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            GridView.count(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 2,
-                children: List.generate(
-                    model.categories.length,
-                    (index) => Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                print(index + 1);
-                              },
-                              child: Container(
-                                width: 150,
-                                height: 150,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[300],
-                                  borderRadius: BorderRadius.circular(13),
-                                ),
-                                child: Center(
-                                  child: Text(model.categories[index].title),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )))
+            ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: AppCubit.get(context).type_movies_data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                      height: 50,
+                      color: Colors.amber,
+                      child: Center(
+                        child: Text(model[index].title),
+                      ));
+                })
           ],
         ),
       ),
