@@ -35,10 +35,8 @@ class AppCubit extends Cubit<AppStates> {
   void get_categories() {
     emit(LoadingCategoriesState());
     fetchData(url: Categoriesurl).then((value) {
-      print("get_categories");
-      categoriesdata = CategoriesModel.fromJson(value);
-
       emit(SuccessCategoriesState());
+      categoriesdata = CategoriesModel.fromJson(value);
     }).catchError((error) {
       print(error.toString());
       emit(ErrorCategoriesState());
@@ -47,27 +45,28 @@ class AppCubit extends Cubit<AppStates> {
 
   MoviesModel movies_data = MoviesModel();
 
+  List<dynamic>? filteredMovies = [];
+
   void get_Movies() {
     emit(LoadingMovieState());
     fetchData(url: moviesurl).then((value) {
-      print("get_Movies");
-      movies_data = MoviesModel.fromJson(value);
-
       emit(SuccessMovieState());
+      movies_data = MoviesModel.fromJson(value);
     }).catchError((error) {
-      print(error.toString());
       emit(ErrorMovieState());
     });
   }
 
-  List<dynamic> drama_movies_data = [];
   void get_spicial() {
-    for (var i = 0; i < movies_data.Movies.length; i++) {
-      // TO DO
-      if (movies_data.Movies[i].categoryId == 3) {
-        drama_movies_data.add(movies_data.Movies[i]);
-      }
-      print(drama_movies_data[1]);
-    }
+    // for (var i = 0; i < movies_data.Movies.length; ++i) {
+    //   // TO DO
+    //   // if (movies_data.Movies[i].categoryId == 3) {
+    //   //   drama_movies_data.add(movies_data.Movies[i]);
+    //   // }
+    //   print(drama_movies_data[i].title);
+    emit(LoadingTypeOfMovieState());
+    filteredMovies =
+        movies_data.movies.where((Movie) => Movie.categoryId == 1).toList();
+    emit(LoadingTypeOfMovieState());
   }
 }

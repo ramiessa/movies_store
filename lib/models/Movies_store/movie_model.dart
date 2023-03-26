@@ -1,9 +1,10 @@
 class MoviesModel {
-  List<Movie> Movies = [];
+  List<Movie> movies = [];
+  List<Movie> drama = [];
   MoviesModel() {}
   MoviesModel.fromJson(Map<String, dynamic> json) {
     json['movies'].forEach((element) {
-      Movies.add(Movie.fromJson(element));
+      movies.add(Movie.fromJson(element));
     });
   }
 }
@@ -14,16 +15,23 @@ class Movie {
   dynamic title;
   dynamic summary;
   List<Actor> actors = [];
+  List<String> writers = [];
+
+  dynamic director;
   dynamic rating;
   String? youtube_video_id;
   int? year;
   Movie.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoryId = json['category_id'];
+    director = json['director'];
     title = json['title'];
     summary = json['summary'];
     json['actors'].forEach((element) {
       actors.add(Actor.fromJson(element));
+    });
+    json['writers'].forEach((element) {
+      writers.add(element);
     });
   }
 }

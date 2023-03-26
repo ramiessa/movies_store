@@ -1,8 +1,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_store/modules/list_of_movies_screen/list_of_movies_screen.dart';
 
 import '../../models/Movies_store/categories_model.dart';
+import '../../models/Movies_store/movie_model.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_state.dart';
 
@@ -89,7 +91,15 @@ class CategoriesScreen extends StatelessWidget {
                     (index) => Column(
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        const ListMovisScreenOnIndex(),
+                                  ),
+                                );
+                              },
                               child: Container(
                                 width: 150,
                                 height: 150,

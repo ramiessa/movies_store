@@ -17,7 +17,3 @@ class SuccessMovieState extends AppStates {}
 class ErrorMovieState extends AppStates {}
 
 class LoadingTypeOfMovieState extends AppStates {}
-
-class SuccessTypeOfMovieState extends AppStates {}
-
-class ErrorTypeOfMovieState extends AppStates {}
