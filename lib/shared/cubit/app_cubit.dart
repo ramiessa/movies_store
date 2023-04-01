@@ -17,6 +17,8 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(InitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
+  // category_id changing
+  int? category_id;
 
   int currentIndex = 0;
 
@@ -57,16 +59,9 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void get_spicial() {
-    // for (var i = 0; i < movies_data.Movies.length; ++i) {
-    //   // TO DO
-    //   // if (movies_data.Movies[i].categoryId == 3) {
-    //   //   drama_movies_data.add(movies_data.Movies[i]);
-    //   // }
-    //   print(drama_movies_data[i].title);
-    emit(LoadingTypeOfMovieState());
-    filteredMovies =
-        movies_data.movies.where((Movie) => Movie.categoryId == 1).toList();
-    emit(LoadingTypeOfMovieState());
+  void changeCategoryId(int index) {
+    category_id = index;
+
+    emit(ChangeCategoryId());
   }
 }

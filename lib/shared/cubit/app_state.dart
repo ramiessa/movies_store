@@ -16,4 +16,10 @@ class SuccessMovieState extends AppStates {}
 
 class ErrorMovieState extends AppStates {}
 
-class LoadingTypeOfMovieState extends AppStates {}
+class LoadingDramaOfMovieState extends AppStates {}
+
+class SuccessDramaOfMovieState extends AppStates {}
+
+class ErrorDramaOfMovieState extends AppStates {}
+
+class ChangeCategoryId extends AppStates {}

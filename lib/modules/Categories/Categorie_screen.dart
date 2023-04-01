@@ -92,11 +92,13 @@ class CategoriesScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                AppCubit.get(context)
+                                    .changeCategoryId(index + 1);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute<void>(
                                     builder: (BuildContext context) =>
-                                        const ListMovisScreenOnIndex(),
+                                        ListMovisScreenOnIndex(),
                                   ),
                                 );
                               },
