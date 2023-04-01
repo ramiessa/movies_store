@@ -47,14 +47,17 @@ class ListMovisScreenOnIndex extends StatelessWidget {
   }
 
   Widget builder_screen(MoviesModel Model, BuildContext context) {
-    return Container(
-        child: ListView.separated(
-            itemBuilder: (context, index) => Model.movies[index].categoryId ==
-                    AppCubit.get(context).category_id
-                ? item(Model.movies[index], context)
-                : SizedBox.shrink(),
-            separatorBuilder: ((context, index) => SizedBox(height: 3)),
-            itemCount: Model.movies.length));
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          child: ListView.separated(
+              itemBuilder: (context, index) => Model.movies[index].categoryId ==
+                      AppCubit.get(context).category_id
+                  ? item(Model.movies[index], context)
+                  : SizedBox.shrink(),
+              separatorBuilder: ((context, index) => SizedBox(height: 3)),
+              itemCount: Model.movies.length)),
+    );
   }
 
   Widget item(dynamic model, BuildContext context) {
@@ -63,7 +66,26 @@ class ListMovisScreenOnIndex extends StatelessWidget {
       width: double.infinity,
       child: Row(
         children: [
-          Text(model.title),
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(13),
+            ),
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Expanded(
+            child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 87, 83, 83),
+                  borderRadius: BorderRadius.circular(13),
+                ),
+                child: Text(model.title)),
+          ),
         ],
       ),
     );
