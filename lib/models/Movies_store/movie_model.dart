@@ -20,13 +20,15 @@ class Movie {
   dynamic director;
   dynamic rating;
   String? youtube_video_id;
-  int? year;
+  String? year;
   Movie.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoryId = json['category_id'];
     director = json['director'];
     title = json['title'];
     summary = json['summary'];
+    rating = json['rating'];
+    year = json['year'];
     json['actors'].forEach((element) {
       actors.add(Actor.fromJson(element));
     });

@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Center(
                       child: Image.asset(
-                        'assets/images/pop.PNG',
+                        'assets/images/pop.png',
                         width: 300,
                         height: 300,
                       ),

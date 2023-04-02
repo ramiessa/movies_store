@@ -19,7 +19,20 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
   // category_id changing
   int? category_id;
-
+  List<String> typesOfMovies = [
+    'Animation',
+    'Action',
+    'Drama',
+    'Comedy',
+    'Horror',
+    'Science Fiction',
+    'Romance',
+    'Thriller',
+    'Arabic',
+    'Musical',
+    'Documentation',
+    'Others'
+  ];
   int currentIndex = 0;
 
   List<Widget> bottomScreens = [

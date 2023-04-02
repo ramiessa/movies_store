@@ -5,6 +5,7 @@ import 'package:movies_store/modules/list_of_movies_screen/list_of_movies_screen
 
 import '../../models/Movies_store/categories_model.dart';
 import '../../models/Movies_store/movie_model.dart';
+import '../../shared/components/components.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_state.dart';
 
@@ -43,31 +44,7 @@ class CategoriesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Row(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Search',
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            defualtSearchBox(),
             const SizedBox(
               height: 30,
             ),
@@ -92,8 +69,7 @@ class CategoriesScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                AppCubit.get(context)
-                                    .changeCategoryId(index + 1);
+                                AppCubit.get(context).changeCategoryId(index);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute<void>(
@@ -102,16 +78,8 @@ class CategoriesScreen extends StatelessWidget {
                                   ),
                                 );
                               },
-                              child: Container(
-                                width: 150,
-                                height: 150,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[300],
-                                  borderRadius: BorderRadius.circular(13),
-                                ),
-                                child: Center(
-                                  child: Text(model.categories[index].title),
-                                ),
+                              child: defualtContainer(
+                                text: model.categories[index].title,
                               ),
                             ),
                           ],
