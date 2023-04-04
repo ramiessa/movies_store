@@ -8,6 +8,7 @@ import '../../models/Movies_store/categories_model.dart';
 import '../../models/Movies_store/movie_model.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_state.dart';
+import '../Movie_Details/movie_details.dart';
 
 class ListMovisScreenOnIndex extends StatelessWidget {
   ListMovisScreenOnIndex({
@@ -15,12 +16,13 @@ class ListMovisScreenOnIndex extends StatelessWidget {
   });
   bool isempty = true;
   int count = 0;
-  List<dynamic> tvshows = [];
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
+          List<dynamic> tvshows = [];
           dynamic i;
           for (i = 0;
               i < AppCubit.get(context).movies_data.movies.length;
@@ -28,6 +30,7 @@ class ListMovisScreenOnIndex extends StatelessWidget {
             if (AppCubit.get(context).movies_data.movies[i].categoryId ==
                 AppCubit.get(context).category_id! + 1) {
               count += 1;
+              tvshows.add(AppCubit.get(context).movies_data.movies[i]);
             }
           }
           return Scaffold(
@@ -48,13 +51,12 @@ class ListMovisScreenOnIndex extends StatelessWidget {
                         style: TextStyle(color: defaultColor, fontSize: 25),
                       ),
                     )),
-                builder: ((context) =>
-                    builder_screen(AppCubit.get(context).movies_data, context)),
+                builder: ((context) => builder_screen(tvshows, context)),
               ));
         });
   }
 
-  Widget builder_screen(MoviesModel Model, BuildContext context) {
+  Widget builder_screen(List<dynamic> Model, BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -80,15 +82,27 @@ class ListMovisScreenOnIndex extends StatelessWidget {
               ListView.separated(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) =>
-                      Model.movies[index].categoryId ==
-                              AppCubit.get(context).category_id! + 1
-                          ? GestureDetector(
-                              child: item(Model.movies[index], context),
-                              onTap: (() => print(index)))
-                          : const SizedBox.shrink(),
+                  itemBuilder: (context, index) => GestureDetector(
+                        child: item(Model[index], context),
+                        onTap: (() {
+                          AppCubit.get(context).chageChoosenMovie(Model[index]);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailsScreen(
+                                      movie: Model[index],
+                                    )),
+                          );
+                        }),
+                      ),
+                  // Model.movies[index].categoryId ==
+                  //         AppCubit.get(context).category_id! + 1
+                  //     ? GestureDetector(
+                  //         child: item(Model.movies[index], context),
+                  //         onTap: (() => print(index)))
+                  //     : const SizedBox.shrink(),
                   separatorBuilder: ((context, index) => SizedBox(height: 10)),
-                  itemCount: Model.movies.length),
+                  itemCount: Model.length),
             ],
           ),
         ),

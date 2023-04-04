@@ -27,6 +27,7 @@ class Movie {
     director = json['director'];
     title = json['title'];
     summary = json['summary'];
+    youtube_video_id = json['youtube_video_id'];
     rating = json['rating'];
     year = json['year'];
     json['actors'].forEach((element) {

@@ -14,3 +14,7 @@ Future<Map<String, dynamic>> fetchData({
     throw Exception('Failed to load data');
   }
 }
+
+Future<http.Response> fetchimage(String url) {
+  return http.get(Uri.parse(url));
+}

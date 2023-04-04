@@ -23,3 +23,9 @@ class SuccessDramaOfMovieState extends AppStates {}
 class ErrorDramaOfMovieState extends AppStates {}
 
 class ChangeCategoryId extends AppStates {}
+
+class ChangeChoosenMovie extends AppStates {}
+
+class AddMovieToWatchList extends AppStates {}
+
+class SuccessLoadImage extends AppStates {}

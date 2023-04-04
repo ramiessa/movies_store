@@ -19,6 +19,8 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
   // category_id changing
   int? category_id;
+
+  List<dynamic> Watchlist = [];
   List<String> typesOfMovies = [
     'Animation',
     'Action',
@@ -76,5 +78,33 @@ class AppCubit extends Cubit<AppStates> {
     category_id = index;
 
     emit(ChangeCategoryId());
+  }
+
+  dynamic choosenMovieData;
+  void chageChoosenMovie(dynamic choosenMove) {
+    choosenMovieData = choosenMove;
+    emit(ChangeChoosenMovie());
+  }
+
+  void add_to_watchlist(dynamic movie) {
+    if (Watchlist.contains(movie) != true) {
+      Watchlist.add(movie);
+    }
+
+    emit(AddMovieToWatchList());
+  }
+
+  dynamic image;
+
+  void getImage(dynamic url) {
+    fetchimage(url).then((response) {
+      if (response.statusCode == 200) {
+        emit(SuccessLoadImage());
+        // If the call to the server was successful, parse the JSON.
+        image = response.body;
+      }
+    }).catchError((error) {
+      print(error.toString());
+    });
   }
 }
