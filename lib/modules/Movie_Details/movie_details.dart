@@ -44,6 +44,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 body: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -87,8 +88,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     child: Container(
                                         height: 100,
                                         decoration: BoxDecoration(
-                                          color:
-                                              Color.fromARGB(255, 87, 83, 83),
+                                          color: const Color.fromARGB(
+                                              255, 87, 83, 83),
                                           borderRadius:
                                               BorderRadius.circular(13),
                                         ),
@@ -106,7 +107,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                                 AppCubit.get(context)
                                                     .choosenMovieData
                                                     .title,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold,
